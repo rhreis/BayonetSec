@@ -1,0 +1,41 @@
+# Dependencies
+**/bin/
+**/obj/
+**/out/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Docker
+Docker/docker-data/
+
+# Test results
+TestResults/
+*.trx
+
+# NuGet
+*.nupkg
+.nuget/
+
+# Entity Framework
+Migrations/
+
+# Temporary files
+*.tmp
+*.temp
