@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "nSnmEzX8hHT2A9k/Y2Oi8f7ZR8KGpD2mVEiK5XHydek=",
+  "Source": "BayonetSec.Api",
+  "BasePath": "_content/BayonetSec.Api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

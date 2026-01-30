@@ -1,0 +1,11 @@
+/home/reis/projects/bayonetsec/BayonetSec.Domain/bin/Debug/net8.0/BayonetSec.Domain.deps.json
+/home/reis/projects/bayonetsec/BayonetSec.Domain/bin/Debug/net8.0/BayonetSec.Domain.dll
+/home/reis/projects/bayonetsec/BayonetSec.Domain/bin/Debug/net8.0/BayonetSec.Domain.pdb
+/home/reis/projects/bayonetsec/BayonetSec.Domain/obj/Debug/net8.0/BayonetSec.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/home/reis/projects/bayonetsec/BayonetSec.Domain/obj/Debug/net8.0/BayonetSec.Domain.AssemblyInfoInputs.cache
+/home/reis/projects/bayonetsec/BayonetSec.Domain/obj/Debug/net8.0/BayonetSec.Domain.AssemblyInfo.cs
+/home/reis/projects/bayonetsec/BayonetSec.Domain/obj/Debug/net8.0/BayonetSec.Domain.csproj.CoreCompileInputs.cache
+/home/reis/projects/bayonetsec/BayonetSec.Domain/obj/Debug/net8.0/BayonetSec.Domain.dll
+/home/reis/projects/bayonetsec/BayonetSec.Domain/obj/Debug/net8.0/refint/BayonetSec.Domain.dll
+/home/reis/projects/bayonetsec/BayonetSec.Domain/obj/Debug/net8.0/BayonetSec.Domain.pdb
+/home/reis/projects/bayonetsec/BayonetSec.Domain/obj/Debug/net8.0/ref/BayonetSec.Domain.dll

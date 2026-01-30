@@ -1,0 +1,56 @@
+version: '3.8'
+
+services:
+  api:
+    build:
+      context: ..
+      dockerfile: Docker/Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:8080
+      - ConnectionStrings__DefaultConnection=Host=postgres;Database=BayonetSecDb;Username=postgres;Password=${POSTGRES_PASSWORD:-changeme}
+      - ConnectionStrings__Redis=redis:6379
+      - Jwt__Key=${JWT_KEY:-YourSuperSecretKeyHere12345678901234567890}
+      - Jwt__Issuer=${JWT_ISSUER:-BayonetSec}
+      - Jwt__Audience=${JWT_AUDIENCE:-BayonetSecUsers}
+    depends_on:
+      - postgres
+      - redis
+    networks:
+      - bayonetsec-network
+    restart: unless-stopped
+
+  postgres:
+    image: postgres:15-alpine
+    environment:
+      - POSTGRES_DB=BayonetSecDb
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-changeme}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - bayonetsec-network
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - bayonetsec-network
+    restart: unless-stopped
+    command: redis-server --appendonly yes --requirepass ${REDIS_PASSWORD:-changeme}
+
+volumes:
+  postgres_data:
+  redis_data:
+
+networks:
+  bayonetsec-network:
+    driver: bridge

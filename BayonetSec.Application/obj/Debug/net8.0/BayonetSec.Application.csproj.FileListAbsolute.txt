@@ -1,0 +1,15 @@
+/home/reis/projects/bayonetsec/BayonetSec.Application/obj/Debug/net8.0/BayonetSec.Application.csproj.AssemblyReference.cache
+/home/reis/projects/bayonetsec/BayonetSec.Application/obj/Debug/net8.0/BayonetSec.Application.GeneratedMSBuildEditorConfig.editorconfig
+/home/reis/projects/bayonetsec/BayonetSec.Application/obj/Debug/net8.0/BayonetSec.Application.AssemblyInfoInputs.cache
+/home/reis/projects/bayonetsec/BayonetSec.Application/obj/Debug/net8.0/BayonetSec.Application.AssemblyInfo.cs
+/home/reis/projects/bayonetsec/BayonetSec.Application/obj/Debug/net8.0/BayonetSec.Application.csproj.CoreCompileInputs.cache
+/home/reis/projects/bayonetsec/BayonetSec.Application/bin/Debug/net8.0/BayonetSec.Application.deps.json
+/home/reis/projects/bayonetsec/BayonetSec.Application/bin/Debug/net8.0/BayonetSec.Application.dll
+/home/reis/projects/bayonetsec/BayonetSec.Application/bin/Debug/net8.0/BayonetSec.Application.pdb
+/home/reis/projects/bayonetsec/BayonetSec.Application/bin/Debug/net8.0/BayonetSec.Domain.dll
+/home/reis/projects/bayonetsec/BayonetSec.Application/bin/Debug/net8.0/BayonetSec.Domain.pdb
+/home/reis/projects/bayonetsec/BayonetSec.Application/obj/Debug/net8.0/BayonetS.BC4D686B.Up2Date
+/home/reis/projects/bayonetsec/BayonetSec.Application/obj/Debug/net8.0/BayonetSec.Application.dll
+/home/reis/projects/bayonetsec/BayonetSec.Application/obj/Debug/net8.0/refint/BayonetSec.Application.dll
+/home/reis/projects/bayonetsec/BayonetSec.Application/obj/Debug/net8.0/BayonetSec.Application.pdb
+/home/reis/projects/bayonetsec/BayonetSec.Application/obj/Debug/net8.0/ref/BayonetSec.Application.dll

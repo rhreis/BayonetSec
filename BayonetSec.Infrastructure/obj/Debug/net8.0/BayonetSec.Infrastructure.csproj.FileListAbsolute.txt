@@ -1,0 +1,17 @@
+/home/reis/projects/bayonetsec/BayonetSec.Infrastructure/bin/Debug/net8.0/BayonetSec.Infrastructure.deps.json
+/home/reis/projects/bayonetsec/BayonetSec.Infrastructure/bin/Debug/net8.0/BayonetSec.Infrastructure.dll
+/home/reis/projects/bayonetsec/BayonetSec.Infrastructure/bin/Debug/net8.0/BayonetSec.Infrastructure.pdb
+/home/reis/projects/bayonetsec/BayonetSec.Infrastructure/bin/Debug/net8.0/BayonetSec.Domain.dll
+/home/reis/projects/bayonetsec/BayonetSec.Infrastructure/bin/Debug/net8.0/BayonetSec.Domain.pdb
+/home/reis/projects/bayonetsec/BayonetSec.Infrastructure/obj/Debug/net8.0/BayonetSec.Infrastructure.csproj.AssemblyReference.cache
+/home/reis/projects/bayonetsec/BayonetSec.Infrastructure/obj/Debug/net8.0/BayonetSec.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+/home/reis/projects/bayonetsec/BayonetSec.Infrastructure/obj/Debug/net8.0/BayonetSec.Infrastructure.AssemblyInfoInputs.cache
+/home/reis/projects/bayonetsec/BayonetSec.Infrastructure/obj/Debug/net8.0/BayonetSec.Infrastructure.AssemblyInfo.cs
+/home/reis/projects/bayonetsec/BayonetSec.Infrastructure/obj/Debug/net8.0/BayonetSec.Infrastructure.csproj.CoreCompileInputs.cache
+/home/reis/projects/bayonetsec/BayonetSec.Infrastructure/obj/Debug/net8.0/BayonetS.8FF6CDCB.Up2Date
+/home/reis/projects/bayonetsec/BayonetSec.Infrastructure/obj/Debug/net8.0/BayonetSec.Infrastructure.dll
+/home/reis/projects/bayonetsec/BayonetSec.Infrastructure/obj/Debug/net8.0/refint/BayonetSec.Infrastructure.dll
+/home/reis/projects/bayonetsec/BayonetSec.Infrastructure/obj/Debug/net8.0/BayonetSec.Infrastructure.pdb
+/home/reis/projects/bayonetsec/BayonetSec.Infrastructure/obj/Debug/net8.0/ref/BayonetSec.Infrastructure.dll
+/home/reis/projects/bayonetsec/BayonetSec.Infrastructure/bin/Debug/net8.0/BayonetSec.Infrastructure.runtimeconfig.json
+/home/reis/projects/bayonetsec/BayonetSec.Infrastructure/obj/Debug/net8.0/BayonetSec.Infrastructure.genruntimeconfig.cache

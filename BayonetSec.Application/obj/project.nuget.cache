@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "CdZOcJnxVV4=",
+  "success": true,
+  "projectFilePath": "/home/reis/projects/bayonetsec/BayonetSec.Application/BayonetSec.Application.csproj",
+  "expectedPackageFiles": [
+    "/home/reis/.nuget/packages/fluentvalidation/11.9.2/fluentvalidation.11.9.2.nupkg.sha512"
+  ],
+  "logs": []
+}
