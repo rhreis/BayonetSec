@@ -1,0 +1,23 @@
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  },
+  "AllowedHosts": "*",
+  "Serilog": {
+    "MinimumLevel": {
+      "Default": "Information",
+      "Override": {
+        "Microsoft": "Warning",
+        "System": "Warning"
+      }
+    }
+  },
+  "Jwt": {
+    "Key": "YourSuperSecretKeyHere12345678901234567890",
+    "Issuer": "BayonetSec",
+    "Audience": "BayonetSecUsers"
+  }
+}

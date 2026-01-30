@@ -2,6 +2,12 @@
 
 BayonetSec é uma plataforma global de gerenciamento de segurança ofensiva. Projetada para profissionais de pentest, consultores de segurança e equipes empresariais para planejar, executar e rastrear testes de segurança ofensiva.
 
+## 🔒 Segurança
+
+⚠️ **IMPORTANTE**: Leia o arquivo [SECURITY.md](SECURITY.md) antes de configurar o ambiente. Ele contém informações críticas sobre proteção de segredos e chaves.
+
+**Nunca commite senhas, chaves ou tokens no Git!** Use sempre arquivos `.env` locais (ignorados pelo Git).
+
 ## 🏗️ Arquitetura
 
 O projeto segue a **Clean Architecture** com separação clara de responsabilidades:

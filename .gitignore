@@ -7,6 +7,11 @@
 .env
 .env.local
 .env.*.local
+.env.example
+
+# App settings with secrets
+appsettings.*.json
+!appsettings.json.example
 
 # IDE
 .vscode/
