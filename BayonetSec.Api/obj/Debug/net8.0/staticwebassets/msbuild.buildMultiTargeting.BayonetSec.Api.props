@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="../build/BayonetSec.Api.props" />
-</Project>
