@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-BayonetSec is a global offensive security management platform designed for professional pentesters, security consultants, and enterprise teams to plan, perform, and track offensive security tests.
+ScarletSec is a global offensive security management platform designed for professional pentesters, security consultants, and enterprise teams to plan, perform, and track offensive security tests.
 
 **Key goals:** Secure-by-design, production-ready, scalable SaaS/on-premise, enterprise-grade multi-tenant support, English naming conventions only.
 
@@ -31,27 +31,27 @@ The project is organized in 5 .NET projects following Clean Architecture:
 
 ```
 backend/
-├── BayonetSec.Api/
+├── ScarletSec.Api/
 │   ├── Controllers/           # HTTP endpoints, authorization
 │   ├── Extensions/            # ServiceCollectionExtensions (DI setup)
 │   ├── Middlewares/           # GlobalExceptionMiddleware
 │   └── Program.cs             # Startup configuration
-├── BayonetSec.Application/
+├── ScarletSec.Application/
 │   ├── DTOs/                  # Data Transfer Objects for API requests/responses
 │   ├── Services/              # Business logic, orchestrates Domain & Infrastructure
 │   ├── Interfaces/            # Service and Repository contracts
 │   └── Validators/            # FluentValidation rules
-├── BayonetSec.Domain/
+├── ScarletSec.Domain/
 │   ├── Entities/              # Core business entities (Project, User, Vulnerability, etc.)
 │   ├── Enums/                 # Domain enums (Status, Severity, Role)
 │   ├── ValueObjects/          # Value objects (Email)
 │   └── Exceptions/            # DomainException
-├── BayonetSec.Infrastructure/
+├── ScarletSec.Infrastructure/
 │   ├── Data/
-│   │   ├── DbContext/         # BayonetSecDbContext (EF Core)
+│   │   ├── DbContext/         # ScarletSecDbContext (EF Core)
 │   │   └── Repositories/      # EF Core repository implementations
 │   └── Config/                # Database configuration
-└── BayonetSec.Tests/
+└── ScarletSec.Tests/
     └── Unit/                  # Unit tests with mock repositories
 ```
 
@@ -82,27 +82,51 @@ backend/
 
 ## Common Commands
 
+**All `dotnet` commands below are run from the `backend/` directory.**
+
 ### Building & Running
 
 ```bash
+cd backend
+
 # Restore NuGet packages
 dotnet restore
 
 # Build the solution
 dotnet build
 
-# Run the API (from project root or BayonetSec.Api/)
-cd backend
-dotnet run --project BayonetSec.Api/BayonetSec.Api.csproj
+# Run the API
+dotnet run --project ScarletSec.Api/ScarletSec.Api.csproj
 
-# Run the API with watch (auto-restart on file changes)
+# Run with auto-restart on file changes (development)
+dotnet watch --project ScarletSec.Api run
+```
+
+### Database Setup
+
+Entity Framework Core migrations manage the database schema. Run these commands from the `backend/` directory:
+
+```bash
 cd backend
-dotnet watch --project BayonetSec.Api run
+
+# Apply pending migrations to the database
+dotnet ef database update
+
+# Create a new migration (after changing entities)
+dotnet ef migrations add MigrationName --project ScarletSec.Infrastructure
+
+# Remove the last unapplied migration
+dotnet ef migrations remove --project ScarletSec.Infrastructure
+
+# View the SQL that will be executed
+dotnet ef migrations script --project ScarletSec.Infrastructure
 ```
 
 ### Testing
 
 ```bash
+cd backend
+
 # Run all tests
 dotnet test
 
@@ -119,33 +143,45 @@ dotnet test --filter "Name=GetByIdAsync_ReturnsProjectDto_WhenProjectExists"
 dotnet test /p:CollectCoverage=true /p:CoverageFormat=opencover
 ```
 
-### Docker
+### Docker Compose
 
 ```bash
-# Navigate to Docker directory
 cd docker
 
-# Copy and configure environment
+# Copy and configure environment variables
 cp .env.example .env
 # Edit .env with your settings
 
-# Start containers
+# Start all containers (API, PostgreSQL, Redis)
 docker-compose up -d
 
 # Stop containers
 docker-compose down
 
-# View logs
+# View API logs
 docker-compose logs -f api
+
+# Access the running services
+# - API/Swagger: http://localhost:8080/swagger
+# - PostgreSQL: localhost:5432
+# - Redis: localhost:6379
 ```
 
-### Development
+### Development Workflow
 
+**Option 1: Local .NET (recommended for fast iteration)**
 ```bash
-# From backend/ directory
-dotnet watch run --project BayonetSec.Api
+cd backend
+dotnet watch --project ScarletSec.Api run
+# Watches source files and auto-restarts when changes are detected
+```
 
-# This watches all source files and auto-restarts when changes are detected
+**Option 2: Docker Compose**
+```bash
+cd docker
+docker-compose up -d
+# Code changes require container rebuild:
+docker-compose up -d --build
 ```
 
 ---
@@ -168,7 +204,7 @@ public async Task<ProjectDto?> GetByIdAsync(Guid projectId, Guid tenantId)
 
 ### 2. Exception Handling
 
-- Domain exceptions are `DomainException` (in BayonetSec.Domain.Exceptions)
+- Domain exceptions are `DomainException` (in ScarletSec.Domain.Exceptions)
 - Global exception middleware (`GlobalExceptionMiddleware`) handles all exceptions and returns standardized error responses
 - Services throw `DomainException` with descriptive messages (e.g., "Project not found")
 
@@ -193,6 +229,46 @@ Serilog is configured in `Program.cs` and reads settings from `appsettings.json`
 
 ---
 
+## Environment Configuration
+
+### Development Environment
+
+Configure the `.env` file in the `docker/` directory (or via environment variables). Required variables:
+
+```bash
+# PostgreSQL
+POSTGRES_PASSWORD=your_secure_password
+
+# JWT (CRITICAL: Generate a new secure key, never use the default!)
+JWT_KEY=your_256bit_hex_key_here
+JWT_ISSUER=ScarletSec
+JWT_AUDIENCE=ScarletSecUsers
+
+# ASP.NET Core
+ASPNETCORE_ENVIRONMENT=Development
+```
+
+**Generating a secure JWT key:**
+```bash
+# Linux/macOS
+openssl rand -hex 32
+
+# Windows PowerShell
+[System.Convert]::ToHexString((1..32 | ForEach-Object { [byte](Get-Random -Maximum 256) }))
+
+# Node.js
+node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
+```
+
+### Configuration Files
+
+- **`backend/ScarletSec.Api/appsettings.json`** — Default development settings (do NOT commit secrets)
+- **`backend/ScarletSec.Api/appsettings.Development.json`** — Development overrides
+- **`docker/.env.example`** — Template for Docker environment variables (committed, safe)
+- **`docker/.env`** — Actual environment variables (gitignored, not committed)
+
+---
+
 ## Dependency Injection Setup
 
 Services are registered in `ServiceCollectionExtensions.AddApplicationServices()`:
@@ -203,8 +279,8 @@ Services are registered in `ServiceCollectionExtensions.AddApplicationServices()
 - **JWT:** Configured with HS256 (symmetric key)
 
 To add a new service:
-1. Create interface in `BayonetSec.Application/Interfaces/`
-2. Implement service in `BayonetSec.Application/Services/`
+1. Create interface in `ScarletSec.Application/Interfaces/`
+2. Implement service in `ScarletSec.Application/Services/`
 3. Register both in `ServiceCollectionExtensions.AddApplicationServices()`
 
 ---
@@ -236,37 +312,83 @@ public async Task SomeMethod_ShouldBehaveLike_WhenConditionMet()
 
 ---
 
+## API Documentation
+
+The API exposes OpenAPI (Swagger) documentation:
+
+- **Swagger UI:** http://localhost:8080/swagger (when running locally)
+- **OpenAPI spec:** http://localhost:8080/openapi/v1.json
+
+Use Swagger to explore endpoints, request/response schemas, and test API calls during development.
+
+---
+
 ## Key Files & Locations
 
-- **Main entry point:** `backend/BayonetSec.Api/Program.cs`
-- **DI setup:** `backend/BayonetSec.Api/Extensions/ServiceCollectionExtensions.cs`
-- **Controllers:** `backend/BayonetSec.Api/Controllers/`
-- **Entity definitions:** `backend/BayonetSec.Domain/Entities/`
-- **Service implementations:** `backend/BayonetSec.Application/Services/`
-- **Validators:** `backend/BayonetSec.Application/Validators/`
-- **Repository implementations:** `backend/BayonetSec.Infrastructure/Repositories/`
-- **Database context:** `backend/BayonetSec.Infrastructure/Data/DbContext/BayonetSecDbContext.cs`
-- **Tests:** `backend/BayonetSec.Tests/Unit/`
+All backend code is in the `backend/` directory. The project is organized as:
+
+```
+backend/
+├── ScarletSec.Api/
+│   ├── Program.cs                                    # Entry point, configuration
+│   ├── Extensions/ServiceCollectionExtensions.cs     # Dependency injection
+│   ├── Controllers/                                  # HTTP endpoints
+│   ├── Middlewares/GlobalExceptionMiddleware.cs      # Global exception handler
+│   └── appsettings.json                              # Configuration (no secrets!)
+├── ScarletSec.Application/
+│   ├── Interfaces/                                   # Service & repository contracts
+│   ├── Services/                                     # Business logic
+│   ├── DTOs/                                         # Request/response models
+│   └── Validators/                                   # FluentValidation rules
+├── ScarletSec.Domain/
+│   ├── Entities/                                     # Core business entities
+│   ├── Enums/                                        # Domain enums
+│   ├── ValueObjects/                                 # Value objects (Email, etc.)
+│   └── Exceptions/DomainException.cs                 # Domain exceptions
+├── ScarletSec.Infrastructure/
+│   ├── Data/DbContext/ScarletSecDbContext.cs         # EF Core context
+│   ├── Data/Repositories/                            # Repository implementations
+│   ├── Migrations/                                   # EF Core migrations
+│   └── Config/                                       # Database configuration
+└── ScarletSec.Tests/
+    └── Unit/                                         # Unit tests (xUnit)
+```
+
+Key files for common tasks:
+- **Adding a new API endpoint:** Create controller in `Controllers/`, service in `ScarletSec.Application/Services/`, DTO in `ScarletSec.Application/DTOs/`
+- **Adding validation:** Create/update validator in `ScarletSec.Application/Validators/`
+- **Adding a database entity:** Define entity in `ScarletSec.Domain/Entities/`, create migration with `dotnet ef migrations add`
+- **Registering services:** Update `ServiceCollectionExtensions.AddApplicationServices()`
 
 ---
 
 ## Security Guidelines
 
-1. **Never commit secrets:** Use `.env` (gitignored), not `appsettings.json` for real values
-2. **Tenant isolation:** Always filter by `TenantId` at repository level
-3. **Input validation:** Use FluentValidation for all API inputs
-4. **Authorization:** Use `[Authorize]` attributes; test role-based access in tests
-5. **HTTPS enforcement:** Enabled in non-development environments (`Program.cs`)
-6. **Logging:** Use structured logging; never log sensitive data (passwords, tokens)
+### ⚠️ CRITICAL: Previous Security Incident
 
-**See `SECURITY.md` for detailed security practices.**
+**A JWT signing key was previously committed to git history.** Although removed from current files, it remains in the commit history. If this repository is public, consider rewriting history or regenerating all secrets.
+
+**Action required:** Generate a new, unique JWT key (see Environment Configuration section above) and never reuse the old one.
+
+### Security Best Practices
+
+1. **Never commit secrets:** Use `.env` (gitignored) or environment variables, never `appsettings.json`
+2. **JWT key security:** Generate unique 256-bit keys for each environment (dev, staging, prod)
+3. **Tenant isolation:** Always filter by `TenantId` at repository level; no exceptions
+4. **Input validation:** Use FluentValidation for all API inputs; validate at API boundaries
+5. **Authorization:** Use `[Authorize]` attributes; always test role-based access in tests
+6. **HTTPS enforcement:** Enabled in non-development environments (`Program.cs`)
+7. **Logging:** Use structured logging via Serilog; never log sensitive data (passwords, tokens, API keys)
+8. **Secrets management:** In production, use Azure Key Vault, AWS Secrets Manager, or similar tools; never hardcode
+
+**See `SECURITY.md` for detailed security practices and incident information.**
 
 ---
 
 ## Current Frontend Plans
 
 - React + Next.js + TypeScript
-- Planned as separate subproject (`frontend/bayonetsec-web/`)
+- Planned as separate subproject (`frontend/scarletsec-web/`)
 - Communicates with backend via `/api/v1/` endpoints
 
 ---
@@ -286,17 +408,26 @@ public async Task SomeMethod_ShouldBehaveLike_WhenConditionMet()
 
 ---
 
-## Copilot/AI Assistant Guidelines
+## Language & Documentation
 
-When working on this codebase:
+- **Code:** All code must use **English only** — class names, method names, variable names, comments, and docstrings
+- **Project files:** This CLAUDE.md and most documentation is in English
+- **Note:** README.md is currently in Portuguese. When updating it, prefer English or provide both versions.
 
-1. **Respect Clean Architecture:** Keep API, Application, Domain, and Infrastructure layers separate
-2. **Enforce multi-tenant rules:** Always include `tenantId` validation in data access
-3. **Use English only:** All naming, comments, and documentation in English
-4. **Generate production-ready code:** Avoid placeholders or fake logic
+---
+
+## Claude Code Assistant Guidelines
+
+When working on this codebase, follow these principles:
+
+1. **Respect Clean Architecture:** Keep API, Application, Domain, and Infrastructure layers separate; don't violate boundaries
+2. **Enforce multi-tenant rules:** Always include `tenantId` validation in data access; assume every user is in a different tenant
+3. **Use English only:** All code naming, comments, and documentation in English
+4. **Generate production-ready code:** Avoid placeholders, TODOs, or fake logic; write code ready for production
 5. **Prioritize clarity:** Write clear, maintainable code over clever shortcuts
-6. **Include tests:** Write unit tests for all business logic
+6. **Include tests:** Write unit tests for all business logic using xUnit pattern (AAA: Arrange, Act, Assert)
 7. **Use DTOs:** All API inputs/outputs through DTOs, not raw entities
-8. **Validate inputs:** Use FluentValidation; centralize validation rules
-9. **Handle exceptions:** Use DomainException for domain-level errors; let middleware handle HTTP responses
-10. **Document decisions:** Explain non-obvious architectural or security decisions briefly
+8. **Validate inputs:** Use FluentValidation; validate at API boundaries
+9. **Handle exceptions:** Use DomainException for domain-level errors; let GlobalExceptionMiddleware handle HTTP responses
+10. **Document decisions:** Explain non-obvious architectural or security decisions briefly in code comments
+11. **Database migrations:** Always create and document EF Core migrations when entity models change

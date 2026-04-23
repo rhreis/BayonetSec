@@ -1,0 +1,9 @@
+﻿/home/reis/projects/bayonetsec/backend/BayonetSec.Infrastructure/Config/DatabaseConfig.cs
+/home/reis/projects/bayonetsec/backend/BayonetSec.Infrastructure/Data/DbContext/BayonetSecDbContext.cs
+/home/reis/projects/bayonetsec/backend/BayonetSec.Infrastructure/Repositories/AssetRepository.cs
+/home/reis/projects/bayonetsec/backend/BayonetSec.Infrastructure/Repositories/ProjectRepository.cs
+/home/reis/projects/bayonetsec/backend/BayonetSec.Infrastructure/Repositories/ReportRepository.cs
+/home/reis/projects/bayonetsec/backend/BayonetSec.Infrastructure/Repositories/Repository.cs
+/home/reis/projects/bayonetsec/backend/BayonetSec.Infrastructure/Repositories/TenantRepository.cs
+/home/reis/projects/bayonetsec/backend/BayonetSec.Infrastructure/Repositories/UserRepository.cs
+/home/reis/projects/bayonetsec/backend/BayonetSec.Infrastructure/Repositories/VulnerabilityRepository.cs

@@ -1,0 +1,125 @@
+{
+  "mcps": {
+    "jira": {
+      "enabled": true,
+      "type": "jira",
+      "config": {
+        "host": "https://your-org.atlassian.net",
+        "email": "your-email@example.com",
+        "apiToken": "${JIRA_API_TOKEN}",
+        "project": "SCARLET",
+        "defaultBoardId": "1"
+      },
+      "capabilities": {
+        "readEpics": true,
+        "readStories": true,
+        "readTasks": true,
+        "createTasks": true,
+        "updateTasks": true,
+        "linkIssues": true,
+        "transitionIssues": true,
+        "addComments": true
+      }
+    },
+    "confluence": {
+      "enabled": true,
+      "type": "confluence",
+      "config": {
+        "host": "https://your-org.atlassian.net/wiki",
+        "email": "your-email@example.com",
+        "apiToken": "${CONFLUENCE_API_TOKEN}",
+        "spaceKey": "SCARLET",
+        "parentPageId": "123456"
+      },
+      "capabilities": {
+        "readPages": true,
+        "createPages": true,
+        "updatePages": true,
+        "createChildPages": true,
+        "uploadAttachments": true,
+        "addComments": true
+      }
+    },
+    "github": {
+      "enabled": true,
+      "type": "github",
+      "config": {
+        "host": "https://github.com",
+        "owner": "rhreis",
+        "repo": "ScarletSec",
+        "personalAccessToken": "${GITHUB_PAT}",
+        "defaultBranch": "master"
+      },
+      "capabilities": {
+        "createPullRequests": true,
+        "createBranches": true,
+        "readPullRequests": true,
+        "addComments": true,
+        "mergePullRequests": true,
+        "createReleases": true,
+        "pushCommits": true,
+        "createIssues": true
+      }
+    }
+  },
+  "agents": {
+    "architect": {
+      "enabled": true,
+      "jiraProject": "SCARLET",
+      "confluenceSpace": "SCARLET",
+      "responsibilities": [
+        "Epic decomposition",
+        "Architecture design",
+        "System documentation",
+        "Technical analysis"
+      ]
+    },
+    "engineer": {
+      "enabled": true,
+      "githubRepo": "rhreis/ScarletSec",
+      "responsibilities": [
+        "Code implementation",
+        "Unit test creation",
+        "Pull request creation",
+        "Branch management"
+      ]
+    },
+    "qa": {
+      "enabled": true,
+      "jiraProject": "SCARLET",
+      "responsibilities": [
+        "Test case creation",
+        "Validation testing",
+        "Issue verification",
+        "Release testing"
+      ]
+    },
+    "devops": {
+      "enabled": true,
+      "githubRepo": "rhreis/ScarletSec",
+      "responsibilities": [
+        "Deployment orchestration",
+        "GitHub Actions workflow management",
+        "Release creation",
+        "Environment configuration"
+      ]
+    },
+    "security": {
+      "enabled": true,
+      "jiraProject": "SCARLET",
+      "responsibilities": [
+        "Security analysis",
+        "Vulnerability assessment",
+        "Compliance checking",
+        "Risk evaluation"
+      ]
+    }
+  },
+  "workflow": {
+    "autoTransition": true,
+    "notifyOnHandoff": true,
+    "validateBeforeTransition": true,
+    "maxRetries": 3,
+    "timeoutSeconds": 3600
+  }
+}

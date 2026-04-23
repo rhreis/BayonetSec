@@ -1,0 +1,12 @@
+﻿/home/reis/projects/bayonetsec/backend/BayonetSec.Domain/Entities/Asset.cs
+/home/reis/projects/bayonetsec/backend/BayonetSec.Domain/Entities/Project.cs
+/home/reis/projects/bayonetsec/backend/BayonetSec.Domain/Entities/Report.cs
+/home/reis/projects/bayonetsec/backend/BayonetSec.Domain/Entities/Tenant.cs
+/home/reis/projects/bayonetsec/backend/BayonetSec.Domain/Entities/TestCase.cs
+/home/reis/projects/bayonetsec/backend/BayonetSec.Domain/Entities/User.cs
+/home/reis/projects/bayonetsec/backend/BayonetSec.Domain/Entities/Vulnerability.cs
+/home/reis/projects/bayonetsec/backend/BayonetSec.Domain/Enums/Role.cs
+/home/reis/projects/bayonetsec/backend/BayonetSec.Domain/Enums/Severity.cs
+/home/reis/projects/bayonetsec/backend/BayonetSec.Domain/Enums/Status.cs
+/home/reis/projects/bayonetsec/backend/BayonetSec.Domain/Exceptions/DomainException.cs
+/home/reis/projects/bayonetsec/backend/BayonetSec.Domain/ValueObjects/Email.cs

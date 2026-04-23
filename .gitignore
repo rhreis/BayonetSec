@@ -7,6 +7,7 @@
 .env
 .env.local
 .env.*.local
+.env.mcp
 .env.example
 
 # App settings with secrets

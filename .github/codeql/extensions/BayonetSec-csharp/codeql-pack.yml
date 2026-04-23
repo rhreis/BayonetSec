@@ -1,4 +1,4 @@
-name: rhreis/bayonetsec-csharp
+name: rhreis/scarletsec-csharp
 version: 0.0.0
 library: true
 extensionTargets:

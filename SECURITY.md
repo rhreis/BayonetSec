@@ -1,4 +1,4 @@
-# Segurança - BayonetSec
+# Segurança - ScarletSec
 
 ## ⚠️ AVISO IMPORTANTE DE SEGURANÇA
 

@@ -1,7 +1,7 @@
-# Copilot Guidelines for BayonetSec
+# Copilot Guidelines for ScarletSec
 
 ## Project Overview
-BayonetSec is a global offensive security management platform.  
+ScarletSec is a global offensive security management platform.  
 The platform is designed for professional pentesters, security consultants, and enterprise teams to plan, perform, and track offensive security tests.  
 
 **Key goals:**

@@ -1,6 +1,6 @@
-# BayonetSec
+# ScarletSec
 
-BayonetSec é uma plataforma global de gerenciamento de segurança ofensiva. Projetada para profissionais de pentest, consultores de segurança e equipes empresariais para planejar, executar e rastrear testes de segurança ofensiva.
+ScarletSec é uma plataforma global de gerenciamento de segurança ofensiva. Projetada para profissionais de pentest, consultores de segurança e equipes empresariais para planejar, executar e rastrear testes de segurança ofensiva.
 
 ## 🔒 Segurança
 
@@ -12,11 +12,11 @@ BayonetSec é uma plataforma global de gerenciamento de segurança ofensiva. Pro
 
 O projeto segue a **Clean Architecture** com separação clara de responsabilidades:
 
-- **BayonetSec.Api**: API Web ASP.NET Core com controladores e middlewares
-- **BayonetSec.Domain**: Entidades de negócio, enums, value objects e regras de domínio
-- **BayonetSec.Application**: Serviços de aplicação, DTOs, validadores e interfaces
-- **BayonetSec.Infrastructure**: Implementação de repositórios, EF Core e configurações de banco
-- **BayonetSec.Tests**: Testes unitários com xUnit
+- **ScarletSec.Api**: API Web ASP.NET Core com controladores e middlewares
+- **ScarletSec.Domain**: Entidades de negócio, enums, value objects e regras de domínio
+- **ScarletSec.Application**: Serviços de aplicação, DTOs, validadores e interfaces
+- **ScarletSec.Infrastructure**: Implementação de repositórios, EF Core e configurações de banco
+- **ScarletSec.Tests**: Testes unitários com xUnit
 
 ## 🛠️ Tecnologias
 
@@ -42,8 +42,8 @@ O projeto segue a **Clean Architecture** com separação clara de responsabilida
 
 1. **Clone o repositório**:
    ```bash
-   git clone https://github.com/rhreis/BayonetSec.git
-   cd BayonetSec
+   git clone https://github.com/rhreis/ScarletSec.git
+   cd ScarletSec
    ```
 
 2. **Configure as variáveis de ambiente**:
@@ -77,19 +77,19 @@ O projeto segue a **Clean Architecture** com separação clara de responsabilida
 
 3. **Execute a API**:
    ```bash
-   cd BayonetSec.Api
+   cd ScarletSec.Api
    dotnet run
    ```
 
 ## 📁 Estrutura do Projeto
 
 ```
-BayonetSec/
-├── BayonetSec.Api/           # API Web
-├── BayonetSec.Domain/        # Camada de Domínio
-├── BayonetSec.Application/   # Serviços de Aplicação
-├── BayonetSec.Infrastructure/# Infraestrutura (EF, Repos)
-├── BayonetSec.Tests/         # Testes Unitários
+ScarletSec/
+├── ScarletSec.Api/           # API Web
+├── ScarletSec.Domain/        # Camada de Domínio
+├── ScarletSec.Application/   # Serviços de Aplicação
+├── ScarletSec.Infrastructure/# Infraestrutura (EF, Repos)
+├── ScarletSec.Tests/         # Testes Unitários
 ├── Docker/                   # Configurações Docker
 │   ├── docker-compose.yml
 │   ├── Dockerfile

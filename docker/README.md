@@ -1,6 +1,6 @@
-# BayonetSec Docker Setup
+# ScarletSec Docker Setup
 
-This directory contains the Docker configuration for running BayonetSec in a containerized environment.
+This directory contains the Docker configuration for running ScarletSec in a containerized environment.
 
 ## Services
 

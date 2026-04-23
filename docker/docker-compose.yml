@@ -10,22 +10,22 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:8080
-      - ConnectionStrings__DefaultConnection=Host=postgres;Database=BayonetSecDb;Username=postgres;Password=${POSTGRES_PASSWORD:-changeme}
+      - ConnectionStrings__DefaultConnection=Host=postgres;Database=ScarletSecDb;Username=postgres;Password=${POSTGRES_PASSWORD:-changeme}
       - ConnectionStrings__Redis=redis:6379
       - Jwt__Key=${JWT_KEY:-YourSuperSecretKeyHere12345678901234567890}
-      - Jwt__Issuer=${JWT_ISSUER:-BayonetSec}
-      - Jwt__Audience=${JWT_AUDIENCE:-BayonetSecUsers}
+      - Jwt__Issuer=${JWT_ISSUER:-ScarletSec}
+      - Jwt__Audience=${JWT_AUDIENCE:-ScarletSecUsers}
     depends_on:
       - postgres
       - redis
     networks:
-      - bayonetsec-network
+      - scarletsec-network
     restart: unless-stopped
 
   postgres:
     image: postgres:15-alpine
     environment:
-      - POSTGRES_DB=BayonetSecDb
+      - POSTGRES_DB=ScarletSecDb
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-changeme}
     ports:
@@ -33,7 +33,7 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
     networks:
-      - bayonetsec-network
+      - scarletsec-network
     restart: unless-stopped
 
   redis:
@@ -43,7 +43,7 @@ services:
     volumes:
       - redis_data:/data
     networks:
-      - bayonetsec-network
+      - scarletsec-network
     restart: unless-stopped
     command: redis-server --appendonly yes --requirepass ${REDIS_PASSWORD:-changeme}
 
@@ -52,5 +52,5 @@ volumes:
   redis_data:
 
 networks:
-  bayonetsec-network:
+  scarletsec-network:
     driver: bridge
